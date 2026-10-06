@@ -2,7 +2,7 @@
 
 This project follows [Semantic Versioning](https://semver.org).
 
-## 0.1.1 (unreleased)
+## 0.1.1 (2026-10-06)
 
 - README: the item tutorial takes its `item_id` from a search instead of a placeholder id.
 - A rate-limited request waits the API's `Retry-After` plus a little jitter, so concurrent

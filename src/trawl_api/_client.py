@@ -126,7 +126,11 @@ class _BaseClient:
             retry_after = _retry_after(response)
             if response.status_code == 429:
                 # Without Retry-After the credits are spent, and waiting does not help.
-                return None if retry_after is None else min(retry_after, _MAX_RETRY_AFTER)
+                if retry_after is None:
+                    return None
+                # Jittered: the API answers every limited caller with the same wait, and
+                # concurrent callers that all come back at that instant collide again.
+                return min(retry_after, _MAX_RETRY_AFTER) + random.uniform(0, 0.25)
             if response.status_code not in _RETRY_STATUSES:
                 return None
             if retry_after is not None:

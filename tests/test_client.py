@@ -227,7 +227,7 @@ def test_a_rate_limit_waits_and_retries(no_sleep: list[float]) -> None:
     sold = client_for(handler).ebay.sold("iphone")
     assert sold.count == 385
     assert len(seen) == 2
-    assert no_sleep == [1.0]
+    assert len(no_sleep) == 1 and 1.0 <= no_sleep[0] <= 1.25
 
 
 def test_a_rate_limit_that_outlasts_the_retries_is_raised() -> None:

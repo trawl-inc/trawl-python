@@ -131,15 +131,19 @@ from trawl_api import NotFoundError, Trawl
 
 client = Trawl()
 
+# The item_id of any sold() result; here, the newest sale of a search.
+item_id = client.ebay.sold("iphone 15 pro 256gb").results[0].item_id
+
 try:
-    item = client.ebay.item("256637082114")
+    item = client.ebay.item(item_id)
 except NotFoundError:
     # Details arrive a few minutes after a sale. A 404 is never billed.
     raise SystemExit("Details are not available yet.")
 
 print(item.title, item.sale_price, item.currency)
-print(item.specifics["Brand"])  # item specifics as a dict
-print(item.seller.username, item.seller.feedback_percent)
+print(item.specifics.get("Brand"))  # item specifics as a dict
+if item.seller:
+    print(item.seller.username, item.seller.feedback_percent)
 print(len(item.images), "images")
 ```
 
@@ -201,7 +205,8 @@ except trawl_api.APIStatusError as error:
 
 All of them inherit from `trawl_api.TrawlError`. Connection errors, 5xx answers and
 per-second rate limits are retried twice with backoff before they are raised; change that
-with `Trawl(max_retries=...)`.
+with `Trawl(max_retries=...)`. The per-second rate belongs to the account, so keep concurrent
+calls within [your plan's rate](https://trawl.dev/docs#plans).
 
 ## Async
 

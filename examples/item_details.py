@@ -13,8 +13,11 @@ client = Trawl()
 if len(sys.argv) > 1:
     item_id = sys.argv[1]
 else:
-    # No id given: take the newest sale of a search.
-    item_id = client.ebay.sold("iphone 15 pro 256gb").results[0].item_id
+    # No id given: take the newest sale of a search. A listing's details follow its
+    # sale by a few minutes, and filtering on an item specific returns only listings
+    # that have them.
+    sold = client.ebay.sold("iphone 15 pro 256gb", attr={"Brand": "Apple"})
+    item_id = sold.results[0].item_id
 
 try:
     item = client.ebay.item(item_id)

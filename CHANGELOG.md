@@ -2,6 +2,11 @@
 
 This project follows [Semantic Versioning](https://semver.org).
 
+## 0.1.2 (2026-10-06)
+
+- README and `examples/item_details.py`: the item tutorial picks a listing whose details are
+  ready, instead of the newest sale, whose details can still be a few minutes away.
+
 ## 0.1.1 (2026-10-06)
 
 - README: the item tutorial takes its `item_id` from a search instead of a placeholder id.

@@ -27,7 +27,8 @@ if item.is_removed:
 
 print(item.title)
 print(f"  state     {item.listing_state}")
-print(f"  price     {item.currency}{item.sale_price}")
+if item.sale_price is not None:
+    print(f"  price     {item.currency}{item.sale_price:.2f}")
 print(f"  condition {item.condition_raw}")
 print(f"  location  {item.location}")
 if item.seller:

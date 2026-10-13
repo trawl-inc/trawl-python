@@ -42,8 +42,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://trawl.dev"
+Homepage = "https://trawl.dev/apis/ebay"
 Documentation = "https://trawl.dev/docs"
+Guides = "https://trawl.dev/guides/scrape-ebay-sold-listings-python"
 Pricing = "https://trawl.dev/pricing"
 Repository = "https://github.com/trawl-inc/trawl-python"
 Changelog = "https://github.com/trawl-inc/trawl-python/blob/main/CHANGELOG.md"

@@ -3,10 +3,11 @@
 [![PyPI](https://img.shields.io/pypi/v/trawl-api)](https://pypi.org/project/trawl-api/)
 [![Python](https://img.shields.io/pypi/pyversions/trawl-api)](https://pypi.org/project/trawl-api/)
 
-The official Python client for [trawl](https://trawl.dev), a data API for eBay. Search 300+
-million completed eBay sales on the US and UK marketplaces and get each one back as typed
-Python objects: final price, sale date, condition, shipping, seller, item specifics, images
-and description. One API key, no proxies, no HTML parsing, no browser to run.
+The official Python client for [trawl](https://trawl.dev), an
+[eBay sold items API](https://trawl.dev/apis/ebay). Search 400+ million completed eBay sales
+on the US and UK marketplaces and get each one back as typed Python objects: final price,
+sale date, condition, shipping, seller, item specifics, images and description. One API key,
+no proxies, no HTML parsing, no browser to run.
 
 ```bash
 pip install trawl-api
@@ -32,6 +33,10 @@ print(f"{sold.count} results, {sold.credits_charged} credit(s) charged")
 
 The key can also be passed directly: `Trawl(api_key="sk_live_...")`. Keep it on your server
 and out of source control.
+
+Coming from eBay's Finding API? The
+[findCompletedItems alternative](https://trawl.dev/guides/findcompleteditems-alternative)
+maps the old call onto `GET /sold` field by field.
 
 ## What you can ask
 
@@ -91,6 +96,10 @@ print(
 )
 ```
 
+eBay's own site stops at 90 days; `date_from` and `date_to` reach past it. A year of one
+query's sales, a month per call, is the guide
+[eBay sold listings history beyond the 90-day window](https://trawl.dev/guides/ebay-sold-listings-history).
+
 ### Filter by price, marketplace and item specifics
 
 ```python
@@ -123,6 +132,9 @@ with open("sold.csv", "w", newline="", encoding="utf-8") as file:
 ```
 
 For pandas: `pd.DataFrame(listing.model_dump() for listing in sold.results)`.
+
+A complete walkthrough with real output is the guide
+[Scrape eBay sold listings in Python](https://trawl.dev/guides/scrape-ebay-sold-listings-python).
 
 ### Get one listing's full details
 
@@ -242,8 +254,12 @@ Responses are [pydantic](https://docs.pydantic.dev) models: `model_dump()` gives
 
 ## Links
 
+- [eBay sold items API](https://trawl.dev/apis/ebay)
 - [Documentation](https://trawl.dev/docs)
 - [Pricing](https://trawl.dev/pricing)
+- [Does eBay API return sold listings?](https://trawl.dev/guides/does-ebay-api-return-sold-listings)
+- [Trawl vs the eBay Marketplace Insights API](https://trawl.dev/compare/trawl-vs-ebay-marketplace-insights-api)
+- [Trawl vs Terapeak](https://trawl.dev/compare/trawl-vs-terapeak-api)
 - [Changelog](https://github.com/trawl-inc/trawl-python/blob/main/CHANGELOG.md)
 
 trawl is an independent service and is not affiliated with or endorsed by eBay Inc.

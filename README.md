@@ -38,6 +38,10 @@ Coming from eBay's Finding API? The
 [findCompletedItems alternative](https://trawl.dev/guides/findcompleteditems-alternative)
 maps the old call onto `GET /sold` field by field.
 
+Already on Apify? The same search runs there as the
+[eBay Sold Listings API Actor](https://apify.com/trawl/ebay-sold-listings-api), pay per
+sold listing, with no trawl account.
+
 ## What you can ask
 
 | Method | Answers | Costs |
